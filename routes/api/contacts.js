@@ -28,10 +28,10 @@ router.get('/:id', async (req, res, next) => {
   const { id } = req.params
   try {
     const result = await getContactById(id)
-    if (result) {
-      res.json(result)
-    } else {
+    if (!result || result === undefined) {
       res.status(404).json({ message: 'Not found' })
+    } else {
+      res.json(result)
     }
   } catch (error) {
     next(error)

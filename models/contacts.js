@@ -8,14 +8,12 @@ const updateContactsFile = async (writtenData) => {
 
 const listContacts = async () => {
   const data = await fs.readFile(contactsPath)
-  const parseData = JSON.parse(data)
-  return parseData
+  return JSON.parse(data)
 }
 
 const getContactById = async (contactId) => {
   const data = await listContacts()
-  const selectContact = data.find((contact) => contact.id == contactId)
-  return selectContact
+  return data.find((contact) => contact.id == contactId)
 }
 
 const removeContact = async (contactId) => {
