@@ -6,7 +6,7 @@ const {
   add,
   update,
   updateStatus,
-} = require('./serviceFunctions')
+} = require('./contactsFunctions')
 
 const router = express.Router()
 
