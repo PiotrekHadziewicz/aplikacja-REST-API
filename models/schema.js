@@ -73,6 +73,14 @@ const user = new Schema(
       type: String,
       required: false,
     },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: [true, "Verify token is required"],
+    },
   },
   { versionKey: false, timestamps: true }
 )
@@ -88,9 +96,14 @@ const loginSchema = joi.object({
   password: joi.string().min(6).required(),
 })
 
+const emailSchema = joi.object({
+  email: joi.string().required(),
+})
+
 const userSchemas = {
   registration: registrationSchema,
   login: loginSchema,
+  email: emailSchema,
 }
 
 const User = mongoose.model('user', user)

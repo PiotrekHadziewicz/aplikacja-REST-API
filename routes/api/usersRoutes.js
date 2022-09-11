@@ -2,6 +2,10 @@ const express = require('express')
 const { avatarResize } = require('./avatarResize')
 const { avatarUpload } = require('./avatarUpload')
 const { authorization } = require('./usersAuth')
+const {
+  verifyEmail,
+  resendVerifyEmail,
+} = require('./emailFunctions')
 
 const {
   listCurrent,
@@ -28,5 +32,9 @@ router.patch(
   avatarResize,
   setAvatar
 )
+
+router.get("/verify/:verificationToken", verifyEmail)
+
+router.post("/verify", resendVerifyEmail)
 
 module.exports = router
